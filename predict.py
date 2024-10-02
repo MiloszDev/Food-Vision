@@ -60,16 +60,16 @@ def pred_and_plot_image(model: torch.nn.Module,
     title=f'Pred: {target_image_pred_label} | Prob: {target_image_pred_probs.max().cpu():.3f}'
   plt.title(title)
   plt.axis(False)
-  plt.savefig('./pred_plot.png')
+  plt.savefig('./pred_plot2.png')
 
 model_dir = Path('models/')
 model_path = model_dir / 'tinyvgg_model.pth'
 
-loaded_model = model_builder.TinyVGG(3, 20, 3)
+loaded_model = model_builder.TinyVGG(3, 64, 3)
 loaded_model.load_state_dict(torch.load(f=model_path, weights_only=True))
 
 pred_and_plot_image(model=loaded_model,
-                    image_path='./data/pizza_image2.jpg',
+                    image_path='./data/pizza_image.jpg',
                     class_names=['pizza', 'steak', 'sushi'],
                     transform=data_transforms,
                     device=device)
